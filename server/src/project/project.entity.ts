@@ -1,5 +1,5 @@
-import { User } from 'src/auth/auth.entity';
 import { Task } from 'src/task/task.entity';
+import { User } from 'src/user/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
