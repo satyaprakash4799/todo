@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Project } from 'src/project/project.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
@@ -15,8 +16,9 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 30,
+    length: 255,
   })
+  @Exclude()
   password: string;
 
   @Column({
@@ -28,4 +30,8 @@ export class User {
 
   @OneToMany((_type) => Project, (project) => project.user, { eager: false })
   projects: Project[];
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
 }
