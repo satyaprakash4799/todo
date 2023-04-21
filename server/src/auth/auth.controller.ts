@@ -7,10 +7,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { GetUserDto } from 'src/user/dto/get-user-dto';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 import { AuthGuard } from './auth.guard';
 import { Public } from './decorators/public.decorator';
+import { AuthenticateUserDto } from './dto/authenticate-user-dto';
 
 @Controller('auth')
 export class AuthController {
@@ -18,8 +18,8 @@ export class AuthController {
 
   @Public()
   @Post('/signin')
-  async signIn(@Body() getUserDto: GetUserDto) {
-    return this.authService.signIn(getUserDto);
+  async signIn(@Body() authenticateUserDto: AuthenticateUserDto) {
+    return this.authService.signIn(authenticateUserDto);
   }
 
   @Public()

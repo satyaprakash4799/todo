@@ -28,7 +28,7 @@ export class User {
   })
   email: string;
 
-  @OneToMany((_type) => Project, (project) => project.user, { eager: false })
+  @OneToMany(() => Project, (project) => project.user, { eager: false })
   projects: Project[];
 
   constructor(partial: Partial<User>) {

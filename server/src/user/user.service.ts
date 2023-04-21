@@ -8,9 +8,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from '../auth/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
-import { GetUserDto } from './dto/get-user-dto';
+import { GetUserDto } from '../auth/dto/get-user-dto';
 
 @Injectable()
 export class UserService {

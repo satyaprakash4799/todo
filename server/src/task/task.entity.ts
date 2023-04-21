@@ -37,7 +37,7 @@ export class Task {
   })
   priority: string;
 
-  @ManyToOne((_type) => Project, (project) => project.tasks, { eager: false })
+  @ManyToOne(() => Project, (project) => project.tasks, { eager: false })
   project: Project;
 
   @CreateDateColumn()
