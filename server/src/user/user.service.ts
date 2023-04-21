@@ -19,17 +19,11 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-  async getUser(getUserDto: GetUserDto): Promise<User | undefined> {
-    const { username, password } = getUserDto;
-    const user = await this.userRepository.findOne({
+  async getUser(getUserDto: GetUserDto): Promise<User> {
+    const { username } = getUserDto;
+    return await this.userRepository.findOne({
       where: { username: username },
     });
-
-    if (user && (await bcrypt.compare(password, user.password))) {
-      return user;
-    } else {
-      throw new UnauthorizedException('Please check your login credentials');
-    }
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {

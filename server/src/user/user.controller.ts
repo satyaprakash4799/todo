@@ -2,7 +2,6 @@ import {
   Controller,
   Post,
   Body,
-  Get,
   Param,
   UseInterceptors,
   ClassSerializerInterceptor,
@@ -17,12 +16,12 @@ import { GetUserDto } from './dto/get-user-dto';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('/signup')
+  @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.createUser(createUserDto);
   }
 
-  @Post('/signin')
+  @Post('signin')
   async signIn(@Body() username: GetUserDto): Promise<User> {
     return this.userService.getUser(username);
   }
