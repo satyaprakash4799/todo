@@ -34,9 +34,15 @@ export class Project {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.projects, { eager: false })
+  @ManyToOne(() => User, (user) => user.projects, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   user: User;
 
-  @OneToMany(() => Task, (task) => task.project, { eager: false })
+  @OneToMany(() => Task, (task) => task.project, {
+    eager: false,
+    cascade: true,
+  })
   tasks: Task[];
 }

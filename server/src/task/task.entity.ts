@@ -27,7 +27,7 @@ export class Task {
   description: string;
 
   @Column({
-    type: 'timestamp',
+    type: 'date',
   })
   dueDate: Date;
 
@@ -37,8 +37,17 @@ export class Task {
   })
   priority: string;
 
-  @ManyToOne(() => Project, (project) => project.tasks, { eager: false })
+  @ManyToOne(() => Project, (project) => project.tasks, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   project: Project;
+
+  @Column({
+    type: Boolean,
+    default: false,
+  })
+  completed: boolean;
 
   @CreateDateColumn()
   createdAt: Date;

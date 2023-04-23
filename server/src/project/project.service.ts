@@ -91,7 +91,6 @@ export class ProjectService {
     if (description) {
       project.description = description;
     }
-
     try {
       await this.projectRepositoy.save(project);
       return project;
