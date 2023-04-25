@@ -10,7 +10,6 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { User } from '../user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { GetUserDto } from 'src/auth/dto/get-user-dto';
-import { GetProjectDto } from './dto/get-project-dto';
 import { UpdateProjectDto } from './dto/update-project-dto';
 
 @Injectable()
@@ -55,6 +54,11 @@ export class ProjectService {
 
   async getProject(id: string, user: User): Promise<Project> {
     const query = this.projectRepositoy.createQueryBuilder('project');
+    query
+      .leftJoinAndSelect('project.tasks', 'tasks')
+      .orderBy('tasks.createdAt', 'DESC')
+      .limit(1);
+
     query.where({
       id,
       user,
